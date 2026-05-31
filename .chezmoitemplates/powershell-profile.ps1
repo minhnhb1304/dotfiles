@@ -6,6 +6,8 @@ $env:EDITOR = "nvim"
 
 # mise: tool versions + project env
 if (Get-Command mise -ErrorAction SilentlyContinue) {
+    # mise's directory-change hook needs PowerShell 7; silence the per-session warning on 5.1.
+    if ($PSVersionTable.PSVersion.Major -lt 7) { $env:MISE_PWSH_CHPWD_WARNING = '0' }
     (& mise activate pwsh) | Out-String | Invoke-Expression
 }
 

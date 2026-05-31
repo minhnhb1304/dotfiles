@@ -12,5 +12,7 @@ $dir = Split-Path -Parent $PROFILE
 if (-not (Test-Path $dir)) {
     New-Item -ItemType Directory -Path $dir -Force | Out-Null
 }
-Set-Content -Path $PROFILE -Value $content -Encoding UTF8
+# Deterministic UTF-8 WITHOUT BOM on both Windows PowerShell 5.1 and PowerShell 7.
+# (Set-Content -Encoding UTF8 writes a BOM on 5.1 but not on 7; utf8NoBOM doesn't exist on 5.1.)
+[System.IO.File]::WriteAllText($PROFILE, $content, (New-Object System.Text.UTF8Encoding($false)))
 Write-Host "[profile] wrote $PROFILE"

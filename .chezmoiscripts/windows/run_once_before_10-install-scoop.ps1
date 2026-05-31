@@ -16,18 +16,22 @@ else {
     Invoke-RestMethod -Uri "https://get.scoop.sh" | Invoke-Expression
 }
 
-# git is required for buckets; install it first if missing.
+# Make scoop reachable in THIS process. The installer adds the shims dir to the
+# registry PATH (only seen by NEW processes) and to its own $env:PATH; this guard
+# also covers the "already installed but not on this process's PATH" edge.
+$scoopRoot = if ($env:SCOOP) { $env:SCOOP } else { Join-Path $env:USERPROFILE 'scoop' }
+$shims = Join-Path $scoopRoot 'shims'
+if ((Test-Path $shims) -and ($env:PATH -notlike "*$shims*")) {
+    $env:PATH = "$shims;$env:PATH"
+}
+
+# git is required by scoop for buckets and updates; install it first if missing.
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
-    Write-Host "[scoop] installing git (needed for buckets)"
+    Write-Host "[scoop] installing git"
     scoop install git
 }
 
-# Ensure the 'extras' bucket exists (adding an existing bucket is a harmless no-op).
-try {
-    scoop bucket add extras
-}
-catch {
-    # already added
-}
+# Note: all packages used by this repo live in the scoop 'main' bucket (added by the
+# installer automatically), so no extra bucket is needed.
 
 Write-Host "[scoop] ready"

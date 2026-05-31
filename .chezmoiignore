@@ -26,7 +26,7 @@
 # --- OS targeting -----------------------------------------------------------
 # On non-Windows: skip the Windows-only scripts and bootstrap.
 {{ if ne .chezmoi.os "windows" }}
-.chezmoiscripts/windows
+.chezmoiscripts/windows/**
 setup.ps1
 {{ end }}
 
@@ -43,8 +43,9 @@ setup.ps1
 .config/rofi
 .config/terminator
 .config/ranger
-run_once_*.sh
-setup.sh
+# chezmoi strips run_once_/after_ prefixes, so target names are e.g. 55-setup-mise-config.sh
+# -> match all bash scripts (covers setup.sh too).
+*.sh
 Brewfile.setup
 terminator.vbs
 {{ end }}

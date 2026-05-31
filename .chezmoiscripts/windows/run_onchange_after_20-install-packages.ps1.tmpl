@@ -3,13 +3,28 @@
 # winget: {{ .packages.winget | join " " }}
 $ErrorActionPreference = "Continue"
 
+# scoop was installed by run_once_before_10 in a SEPARATE chezmoi child process, so
+# this process inherited chezmoi's launch-time PATH without the shims dir. Add it,
+# otherwise every `scoop install` below fails with "scoop not recognized" and (because
+# ErrorActionPreference=Continue) silently installs nothing.
+$scoopRoot = if ($env:SCOOP) { $env:SCOOP } else { Join-Path $env:USERPROFILE 'scoop' }
+$shims = Join-Path $scoopRoot 'shims'
+if ((Test-Path $shims) -and ($env:PATH -notlike "*$shims*")) {
+    $env:PATH = "$shims;$env:PATH"
+}
+
 # --- Scoop (CLI tools; scoop install no-ops if already present) -------------
-$scoopPkgs = "{{ .packages.scoop | join " " }}".Split(" ")
-foreach ($p in $scoopPkgs) {
-    if ($p) {
-        Write-Host "[scoop] install $p"
-        scoop install $p
+if (Get-Command scoop -ErrorAction SilentlyContinue) {
+    $scoopPkgs = "{{ .packages.scoop | join " " }}".Split(" ")
+    foreach ($p in $scoopPkgs) {
+        if ($p) {
+            Write-Host "[scoop] install $p"
+            scoop install $p
+        }
     }
+}
+else {
+    Write-Warning "scoop not on PATH; skipping scoop packages. Open a new PowerShell and run 'chezmoi apply' again."
 }
 
 # --- winget (GUI / shells) --------------------------------------------------
