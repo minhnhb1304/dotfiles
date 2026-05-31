@@ -1,0 +1,22 @@
+# Install Windows packages. Re-runs whenever the package lists below change.
+# scoop:  {{ .packages.scoop | join " " }}
+# winget: {{ .packages.winget | join " " }}
+$ErrorActionPreference = "Continue"
+
+# --- Scoop (CLI tools; scoop install no-ops if already present) -------------
+$scoopPkgs = "{{ .packages.scoop | join " " }}".Split(" ")
+foreach ($p in $scoopPkgs) {
+    if ($p) {
+        Write-Host "[scoop] install $p"
+        scoop install $p
+    }
+}
+
+# --- winget (GUI / shells) --------------------------------------------------
+{{- range .packages.winget }}
+Write-Host "[winget] install {{ . }}"
+winget install --id {{ . }} --exact --source winget --silent `
+    --accept-package-agreements --accept-source-agreements --disable-interactivity
+{{- end }}
+
+Write-Host "[packages] done"

@@ -19,3 +19,12 @@
 [merge]
     command = "nvim"
     args = ["-d"]
+
+{{- if lookPath "pwsh" }}
+
+# Run .ps1 scripts with PowerShell 7 (UTF-8, cross-platform).
+# Only set when pwsh is present; otherwise chezmoi falls back to Windows PowerShell 5.1.
+[interpreters.ps1]
+    command = "pwsh"
+    args = ["-NoLogo", "-NoProfile"]
+{{- end }}

@@ -1,0 +1,16 @@
+# Write the PowerShell profile to $PROFILE.
+# Using runtime $PROFILE avoids the pwsh-7 vs 5.1 path split and OneDrive-redirected Documents.
+# Re-runs when the profile content changes.
+# profile hash: {{ includeTemplate "powershell-profile.ps1" . | sha256sum }}
+$ErrorActionPreference = "Stop"
+
+$content = @'
+{{ includeTemplate "powershell-profile.ps1" . }}
+'@
+
+$dir = Split-Path -Parent $PROFILE
+if (-not (Test-Path $dir)) {
+    New-Item -ItemType Directory -Path $dir -Force | Out-Null
+}
+Set-Content -Path $PROFILE -Value $content -Encoding UTF8
+Write-Host "[profile] wrote $PROFILE"

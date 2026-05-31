@@ -22,3 +22,29 @@
 .claude/
 .claude.json
 {{ end }}
+
+# --- OS targeting -----------------------------------------------------------
+# On non-Windows: skip the Windows-only scripts and bootstrap.
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/windows
+setup.ps1
+{{ end }}
+
+# On Windows: skip Unix-only shells, TUIs/GUIs, and the bash setup scripts.
+{{ if eq .chezmoi.os "windows" }}
+.zshrc
+.zshrc_minimal
+.zprofile
+.profile
+.bashrc
+.tmux.conf
+.envrc
+.config/kitty
+.config/rofi
+.config/terminator
+.config/ranger
+run_once_*.sh
+setup.sh
+Brewfile.setup
+terminator.vbs
+{{ end }}

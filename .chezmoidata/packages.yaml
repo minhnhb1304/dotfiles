@@ -1,0 +1,20 @@
+# Windows package lists, consumed by .chezmoiscripts/windows/*.
+# Editing these re-triggers the run_onchange package installer.
+packages:
+  # Installed via Scoop (user-scope, no admin).
+  scoop:
+    - git
+    - mise
+    - neovim
+    - fzf
+    - ripgrep
+    - fd
+    - bat
+    - eza
+    - zoxide
+    - starship
+    - jq
+    - fastfetch
+  # Installed via winget (GUI / shells not in Scoop main).
+  winget:
+    - Microsoft.PowerShell
