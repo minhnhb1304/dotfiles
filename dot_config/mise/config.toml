@@ -1,0 +1,73 @@
+[settings]
+experimental = true
+legacy_version_file_disable_tools = ['java']
+idiomatic_version_file_enable_tools = ["node"]
+
+[settings.npm]
+package_manager = "aube"
+
+[settings.pipx]
+uvx = true
+
+[settings.cargo]
+binstall = true
+
+[tools]
+chezmoi = "latest"
+direnv = "latest"
+go = "1.25.1"
+jq = "latest"
+k6 = "latest"
+node = "22"
+python = "3.11"
+ripgrep = "latest"
+rust = "latest"
+zig = "0.11.0"
+shellcheck = "latest"
+shfmt = "latest"
+uv = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+yq = "latest"
+neovim = "0.11.4"
+lazygit = "latest"
+dasel = "latest"
+hurl = "latest"
+rg = "latest"
+cloudflared = "latest"
+ast-grep = "latest"
+starship = "latest"
+zoxide = "latest"
+delta = "latest"
+usage = "latest"
+"forgejo:mergiraf/mergiraf" = "latest"
+bun = "latest"
+doggo = "latest"
+jnv = "latest"
+"github:asyrjasalo/dynamic-mcp" = "latest"
+"github:memextech/ht-mcp" = "latest"
+gemini-cli = "latest"
+"npm:mcp-chrome-bridge" = "latest"
+rclone = "latest"
+git-lfs = "latest"
+kubectl = "latest"
+k9s = "latest"
+"github:bettercap/bettercap" = "latest"
+pnpm = "latest"
+"github:samhvw8/claude-code-profile" = "latest"
+"npm:playwriter" = "latest"
+vhs = "latest"
+zellij = "latest"
+"github:pinchtab/pinchtab" = "latest"
+wrangler = "latest"
+"pipx:it2" = "latest"
+"npm:cf" = "latest"
+claude = "latest"
+gcloud = "latest"
+"pipx:code-review-graph" = "latest"
+rtk = "latest"
+aube = "latest"
+flyctl = "latest"
+firebase = "15.17.0"
+"npm:@agentmemory/agentmemory" = "latest"
+"github:iii-hq/iii" = "iii/v0.11.2"
+"github:colbymchenry/codegraph" = "latest"

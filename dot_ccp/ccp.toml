@@ -1,0 +1,87 @@
+default_registry = 'skills.sh'
+
+[github]
+topics = ['agent-skills', 'claude-code', 'claude-skills', 'awesome-skills', 'claude-plugin']
+keywords = []
+per_page = 10
+
+[skillssh]
+base_url = 'https://skills.sh'
+limit = 10
+
+[sources]
+[sources.'ast-grep/agent-skill']
+registry = 'manual'
+provider = 'git'
+url = 'https://github.com/ast-grep/agent-skill'
+path = 'sources/ast-grep--agent-skill'
+commit = '577f4d4507678f2c8cee150fae25e6ce309f70b1'
+updated = 2026-05-09T23:59:02.761688+07:00
+installed = ['skills/ast-grep']
+
+[sources.'intellectronica/agent-skills']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/intellectronica/agent-skills.git'
+path = 'sources/intellectronica--agent-skills'
+ref = 'main'
+commit = '9b0e00ad1b941165e2506545bbfddafa34cf2cb8'
+updated = 2026-05-18T08:52:54.36408+07:00
+installed = ['skills/ultrathink']
+
+[sources.'nextlevelbuilder/ui-ux-pro-max-skill']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git'
+path = 'sources/nextlevelbuilder--ui-ux-pro-max-skill'
+ref = 'main'
+commit = 'b7e3af80f6e331f6fb456667b82b12cade7c9d35'
+updated = 2026-04-24T21:08:26.248057425+07:00
+installed = ['skills/ui-ux-pro-max']
+
+[sources.'remorses/playwriter@main']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/remorses/playwriter.git'
+path = 'sources/remorses--playwriter@main'
+ref = 'main'
+commit = 'e9918fcadc2462576dc0afb5942d77317d8b593d'
+updated = 2026-04-24T21:08:28.896724236+07:00
+
+[sources.'samhvw8/claude-code-profile']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/samhvw8/claude-code-profile.git'
+path = 'sources/samhvw8--claude-code-profile'
+ref = 'main'
+commit = 'c39af15ce30e2b3130a0b53382213da646462f70'
+updated = 2026-05-02T21:45:06.427979+07:00
+installed = ['skills/ccp-dev', 'skills/ccp']
+
+[sources.'tw93/waza']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/tw93/Waza.git'
+path = 'sources/tw93--waza'
+ref = 'main'
+commit = '5598a3a8eff88d52ed1a0f90b5aa1cf18837eb1b'
+updated = 2026-05-18T08:52:45.913022+07:00
+installed = ['skills/think']
+
+[sources.'vercel-labs/next-skills']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/vercel-labs/next-skills.git'
+path = 'sources/vercel-labs--next-skills'
+ref = 'main'
+commit = '038954e07bfc313e97fa5f6ff7caf87226e4a782'
+updated = 2026-04-24T21:08:30.412143156+07:00
+
+[sources.'wshobson/agents']
+registry = 'github'
+provider = 'git'
+url = 'https://github.com/wshobson/agents.git'
+path = 'sources/wshobson--agents'
+ref = 'main'
+commit = '27a7ed95755a5c3a2948694343a8e2cd7a7ef6fb'
+updated = 2026-04-24T21:08:32.693639802+07:00
