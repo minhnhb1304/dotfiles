@@ -51,6 +51,8 @@ setup.ps1
 # chezmoi strips run_once_/after_ prefixes, so target names are e.g. 55-setup-mise-config.sh
 # -> match all bash scripts (covers setup.sh too).
 *.sh
+# modify_dot_gitconfig.tmpl is a /bin/sh script; chezmoi cannot run it natively on Windows.
+.gitconfig
 Brewfile.setup
 terminator.vbs
 {{ end }}
