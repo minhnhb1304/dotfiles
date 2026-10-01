@@ -114,7 +114,7 @@ main() {
     if [[ ! -d "$HOME/.local/share/chezmoi/.git" ]]; then
         log_info "Initializing chezmoi with dotfiles repository..."
         log_info "You will be prompted for your git name and email..."
-        if ! chezmoi init --promptBool "minimal=${MINIMAL}" --promptBool "conda=${CONDA}" https://github.com/samhvw8/dotfiles.git; then
+        if ! chezmoi init --promptBool "minimal=${MINIMAL}" --promptBool "conda=${CONDA}" https://github.com/minhnhb1304/dotfiles.git; then
             log_error "Failed to initialize chezmoi with dotfiles repository"
             exit 1
         fi
