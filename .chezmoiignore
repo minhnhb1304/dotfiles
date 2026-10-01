@@ -23,6 +23,11 @@
 .claude.json
 {{ end }}
 
+# Keep my custom Claude Code status line local (never manage/overwrite)
+.ccp/profiles/default/statusline.sh
+.ccp/profiles/default/statusline.sh.bak
+.ccp/profiles/default/settings-fragment.json
+
 # --- OS targeting -----------------------------------------------------------
 # On non-Windows: skip the Windows-only scripts and bootstrap.
 {{ if ne .chezmoi.os "windows" }}
