@@ -1,0 +1,19 @@
+# Write the personal global Claude Code instructions to ~/.claude/CLAUDE.md.
+# Based on luanquangminh/claude-skill's CLAUDE.md with personal tweaks
+# (reply in the prompt's language, no claude.ai Artifacts, mise rule).
+# ~/.claude is ignored on Windows, so the file is written by this script
+# instead of being a managed target. Re-runs when the content changes.
+# CLAUDE.md hash: {{ includeTemplate "claude-CLAUDE.md" . | sha256sum }}
+$ErrorActionPreference = "Stop"
+
+$content = @'
+{{ includeTemplate "claude-CLAUDE.md" . }}
+'@
+
+$dir = Join-Path $HOME ".claude"
+if (-not (Test-Path $dir)) {
+    New-Item -ItemType Directory -Path $dir -Force | Out-Null
+}
+$path = Join-Path $dir "CLAUDE.md"
+[System.IO.File]::WriteAllText($path, $content, (New-Object System.Text.UTF8Encoding($false)))
+Write-Host "[claude] wrote $path"
